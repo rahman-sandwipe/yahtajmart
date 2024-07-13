@@ -70,6 +70,11 @@ class HomeController extends Controller
     
     
     
+    // FAQsController  =============
+    public function faqs() : View {
+        $FAQs=FAQs::where(['status'=>'public'])->orderBy('id','ASC')->get();
+        return view('frontends.pages.partials.faqs', compact('FAQs'));
+    }
     // contactsController  =============
     public function contacts() : View {
         $contacts=Contact::latest()->first();
@@ -79,9 +84,13 @@ class HomeController extends Controller
     public function abouts() : View {
         return view('frontends.pages.abouts');
     }
-    // aboutsController  =============
-    public function faqs() : View {
-        $FAQs=FAQs::where(['status'=>'public'])->orderBy('id','ASC')->get();
-        return view('frontends.pages.partials.faqs', compact('FAQs'));
+
+    // ProductsController
+    public function shops(){
+        $products = Product::with('user','category','brand')
+        ->where(['status'=>'public'])
+        ->latest()
+        ->paginate(15);
+        return view('frontends.pages.shops', compact('products'));
     }
 }
