@@ -69,17 +69,17 @@
                                     <td class="text-center detail-info" data-th="Stock">
                                         <div class="detail-extralink mr-15">
                                             <div class="detail-qty border radius">
-                                                <a href="{{ route('incrementQty', $itemDetails->id ) }}" onclick="event.preventDefault(); document.getElementById('incrementQty-form').submit();" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
-                                                <form id="incrementQty-form" action="{{ route('incrementQty',$itemDetails->id) }}" method="POST" style="display: none;">
+                                                <a href="{{ route('decrementQty', $itemDetails->id ) }}" onclick="event.preventDefault(); document.getElementById('decrementQty-form').submit();" class="qty-down"><i class="fi-rs-angle-small-down"></i></a>
+                                                <form id="decrementQty-form" action="{{ route('decrementQty',$itemDetails->id) }}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
                                                 </form>
                                                 
                                                 <input type="text" name="quantity" class="qty-val" value="{{ $itemDetails->quantity }}" min="1" max="5">
                                                 
-                                                <a href="{{ route('decrementQty', $itemDetails->id ) }}" onclick="event.preventDefault(); document.getElementById('decrementQty-form').submit();" class="qty-up">
+                                                <a href="{{ route('incrementQty', $itemDetails->id ) }}" onclick="event.preventDefault(); document.getElementById('incrementQty-form').submit();" class="qty-up">
                                                     <i class="fi-rs-angle-small-up"></i>
                                                 </a>
-                                                <form id="decrementQty-form" action="{{ route('decrementQty',$itemDetails->id) }}" method="POST" style="display: none;">
+                                                <form id="incrementQty-form" action="{{ route('incrementQty',$itemDetails->id) }}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}
                                                 </form>
                                             </div>

@@ -24,10 +24,18 @@
                     <div class="body">
                         <form method="post" action="{{ route('admin.contacts') }}">
                             @csrf
-                            {{-- Description --}}
+                            {{-- office_address --}}
                             <div class="form-group">
-                                <label for="description">Description</label>
-                                <textarea name="description" id="description" class="form-control summernote">{!! $contacts->description !!}</textarea>
+                                <label for="office_address">Office Address</label>
+                                <textarea name="office_address" id="office_address" class="form-control summernote">{!! $contacts->office_address !!}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="shop_address">Shop Address</label>
+                                <textarea name="shop_address" id="shop_address" class="form-control summernote">{!! $contacts->shop_address !!}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="studio_address">Studio Address</label>
+                                <textarea name="studio_address" id="studio_address" class="form-control summernote">{!! $contacts->studio_address !!}</textarea>
                             </div>
                             
                             <div class="form-group">
@@ -40,4 +48,21 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script>
+    $('.summernote').summernote({
+      placeholder: 'write here...',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen']]
+      ]
+    });
+  </script>
 @endsection

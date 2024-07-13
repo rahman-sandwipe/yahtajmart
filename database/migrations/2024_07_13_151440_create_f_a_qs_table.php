@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contacts', function (Blueprint $table) {
+        Schema::create('f_a_qs', function (Blueprint $table) {
             $table->id();
-            $table->mediumText('office_address')->nullable();
-            $table->mediumText('shop_address')->nullable();
-            $table->mediumText('studio_address')->nullable();
-            $table->mediumText('google_maps')->nullable();
+            $table->string('question');
+            $table->text('answer');
+            $table->enum('status',['public','private'])->default('public');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contacts');
+        Schema::dropIfExists('f_a_qs');
     }
 };

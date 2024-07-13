@@ -241,6 +241,17 @@
                         </li>
                         <li>
                             <a href="javascript:void(0);" class="has-arrow"><i class="fa fa-newspaper-o"></i> <span>Blogs</span></a>
+                            <ul>
+                                <li class="{{ Request::routeIs('faqs.index') ? 'active' : '' }}">
+                                    <a href="{{ route('faqs.index') }}">FAQs</a>
+                                </li>
+                                <li class="{{ Request::routeIs('faqs.create') ? 'active' : '' }}">
+                                    <a href="{{ route('faqs.create') }}">Add FAQs</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="has-arrow"><i class="fa fa-newspaper-o"></i> <span>Blogs</span></a>
                         </li>
                     </ul>
                 </nav>

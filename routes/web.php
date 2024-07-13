@@ -7,10 +7,12 @@ use App\Http\Controllers\Frontend\ShoppingCartController;
 
 
 Route::controller(HomeController::class)->group(function(){
+    // Pages Menu View
     Route::get('/',                                 'home')->name(('home'));
     Route::get('/shop',                             'shop')->name(('shop'));
     Route::get('/blogs',                            'blog')->name('blog');
     Route::get('/abouts',                           'abouts')->name('abouts');
+    Route::get('/faqs',                             'faqs')->name('faqs');
     Route::get('/contacts',                         'contacts')->name('contacts');
     Route::get('/category/{Category:Slug}',         'category')->name('category');
     Route::get('/product-details/{Product:Slug}',   'product_details')->name('product_details');

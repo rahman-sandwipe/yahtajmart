@@ -224,8 +224,7 @@
 								<li>
 									<a href="{{ route('blog') }}">Blog</a>
 								</li>
-								<li><a href="{{ route('abouts') }}">FAQs</a></li>
-								<li><a href="{{ route('abouts') }}">Become a Sellers</a></li>
+								<li><a href="{{ route('faqs') }}">FAQs</a></li>
 								<li><a href="{{ route('abouts') }}">About Us</a></li>
 								<li><a href="{{ route('contacts') }}">Contact Us</a></li>
 							</ul>

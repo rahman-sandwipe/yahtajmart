@@ -6,7 +6,9 @@ use App\Models\Banner;
 use App\Models\Blog;
 use App\Models\Video;
 use App\Models\Category;
+use App\Models\Contact;
 use App\Models\Feedback;
+use App\Models\Partials\FAQs;
 use App\Models\Photo;
 use App\Models\Product;
 use App\Models\Settings;
@@ -70,10 +72,16 @@ class HomeController extends Controller
     
     // contactsController  =============
     public function contacts() : View {
-        return view('frontends.pages.contacts');
+        $contacts=Contact::latest()->first();
+        return view('frontends.pages.contacts', compact('contacts'));
     }
     // aboutsController  =============
     public function abouts() : View {
         return view('frontends.pages.abouts');
+    }
+    // aboutsController  =============
+    public function faqs() : View {
+        $FAQs=FAQs::where(['status'=>'public'])->orderBy('id','ASC')->get();
+        return view('frontends.pages.partials.faqs', compact('FAQs'));
     }
 }

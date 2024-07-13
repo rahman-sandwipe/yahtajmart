@@ -39,13 +39,16 @@ class ShoppingCartController extends Controller
             return redirect(route('user.login'));
         }
     }
-
+    
     public function incrementQty($id){
         $cart = ShoppingCart::whereId($id)->first();
         $cart->quantity += 1;
         $cart->save();
-
-        session()->flash('success', 'Product quantity updated !!!');
+        $notification = array(
+            'message' => 'Product quantity updated !!!',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
     }
 
     public function decrementQty($id){
@@ -53,9 +56,18 @@ class ShoppingCartController extends Controller
         if($cart->quantity > 1){
             $cart->quantity -= 1;
             $cart->save();
-                        session()->flash('success', 'Product quantity updated !!!');
+            
+            $notification = array(
+                'message' => 'Product quantity updated !!!',
+                'alert-type' => 'success'
+            );
+            return back()->with($notification);
         }else{
-            session()->flash('info','You cannot have less than 1 quantity');
+            $notification = array(
+                'message' => 'You cannot have less than 1 quantity',
+                'alert-type' => 'info'
+            );
+            return back()->with($notification);
         }
     }
 

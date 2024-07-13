@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\PhotoController;
 use App\Http\Controllers\Backend\VideoController;
 use App\Http\Controllers\Country\ThanaController;
+use App\Http\Controllers\Partials\FAQsController;
 use App\Http\Controllers\Admin\PasswordController;
 use App\Http\Controllers\Backend\BannerController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -187,6 +188,17 @@ Route::group(['prefix'=>'admin','middleware'=>Admin::class],function() {
         Route::post('/social/update/{id}',   'update')->name('social.update');
         Route::post('/config-site',          'configUpdate')->name('config.update');
         Route::post('/support-center',       'supportCenter')->name('supportCenter');
+    });
+
+    // FAQsController
+    Route::controller(FAQsController::class)->group(function(){
+        Route::get('/faqs',                 'index')->name('faqs.index');
+        Route::get('new/faqs',              'create')->name('faqs.create');
+        Route::post('new/faqs',             'store');
+        Route::get('/faqs/status/{id}',     'status')->name('faqs.status');
+        Route::get('edit/faqs/{id}',        'edit')->name('faqs.edit');
+        Route::post('edit/faqs/{id}',       'update');
+        Route::get('/faqs/delete/{id}',     'destroy')->name('faqs.destroy');
     });
 
 
