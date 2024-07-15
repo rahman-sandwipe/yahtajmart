@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Blog extends Model
 {
     use HasFactory;
-    protected $fillable = ['public_id','headline','thumb','caption','views','intro','contents','author_id','status','cat_id','meta_tags','meta_desc'];
+    protected $fillable = ['blogID','headline','thumb','caption','views','intro','contents','author_id','status','cat_id','meta_tags','meta_desc'];
     public function user(){
         return $this->belongsTo(User::class, 'author_id');
     }

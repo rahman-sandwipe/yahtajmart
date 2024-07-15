@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\RegisteredUserController;
 use App\Http\Controllers\Admin\PasswordResetLinkController;
 use App\Http\Controllers\Admin\ConfirmablePasswordController;
 use App\Http\Controllers\Admin\AuthenticatedSessionController;
+use App\Http\Controllers\Partials\SettingsController;
 
 Route::group(['prefix'=>'admin','middleware'=>'guest:admin'], function () {
     Route::get('login',                     [AuthenticatedSessionController::class, 'create'])
@@ -181,12 +182,20 @@ Route::group(['prefix'=>'admin','middleware'=>Admin::class],function() {
     Route::get('contacts',              [ContactController::class, 'edit'])->name('admin.contacts');
     Route::post('contacts',             [ContactController::class, 'update']);
     
+    // SettingsController
+    Route::controller(SettingsController::class)->group(function(){
+        Route::get('/config-site',   'configSettings')->name('config.settings');
+        Route::post('/config-site',  'configUpdate');
+    });
+
+
+
+
     // PartialsController
     Route::controller(PartialsController::class)->group(function(){
         Route::get('/settings',              'settings')->name('settings');
         Route::post('social-media/insert',   'socialInsert')->name('social.insert');
         Route::post('/social/update/{id}',   'update')->name('social.update');
-        Route::post('/config-site',          'configUpdate')->name('config.update');
         Route::post('/support-center',       'supportCenter')->name('supportCenter');
     });
 

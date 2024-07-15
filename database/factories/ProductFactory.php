@@ -23,8 +23,7 @@ class ProductFactory extends Factory
         return [
             'title'=>$this->faker->word,
             'slug'=>$this->faker->unique()->slug,
-            'thumb'=>$this->faker->imageUrl('400', '400'),
-            'thumbs'=>$this->faker->imageUrl('400', '400'),
+            'thumb'=>$this->faker->imageUrl('1000', '1000'),
             'width_or_size'=>$this->faker->randomElement(['10', '15', 'L', 'M']),
             'total_stock'=>$this->faker->numberBetween(2,10),
             'regular_price'=>$this->faker->numberBetween(100, 1000),
@@ -34,6 +33,7 @@ class ProductFactory extends Factory
             'description'=>$this->faker->text,
             'aditional_info'=>$this->faker->text,
             'status'=>$this->faker->randomElement(['public', 'private']),
+            'condition'=>$this->faker->randomElement(['New','Best','Recommend']),
             's_tags'=>$this->faker->text,
             'meta_tags'=>$this->faker->text,
             'meta_desc'=>$this->faker->text,

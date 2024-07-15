@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('peyment_methods', function (Blueprint $table) {
             $table->id();
+            $table->string('method_name');
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }

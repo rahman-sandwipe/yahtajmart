@@ -11,7 +11,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $table = "products";
-    protected $fillable = ['product_id','author_id','brand_id','title','slug','thumb','thumbs','width_or_size','total_stock','regular_price','offer_price','total_discount','sort_desc','description','aditional_info','cat_id','status','s_tags','meta_tags','meta_desc'];
+    protected $fillable = ['productID','condition','author_id','brand_id','title','slug','thumb','thumbs','width_or_size','total_stock','regular_price','offer_price','total_discount','sort_desc','description','aditional_info','cat_id','status','s_tags','meta_tags','meta_desc'];
     public function user(){
         return $this->belongsTo(User::class, 'author_id');
     }

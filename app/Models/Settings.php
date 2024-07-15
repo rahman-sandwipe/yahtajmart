@@ -20,7 +20,6 @@ class Settings extends Model
         'web_metadesc',
         'web_timezone',
         'author_mail',
-        'author_phone',
-        'author_address'
+        'author_phone'
     ];
 }

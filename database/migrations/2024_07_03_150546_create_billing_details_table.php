@@ -16,10 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('order_id');
             $table->string('customer_id');
-            // $table->string('country');
-            // $table->string('div_id');
-            // $table->string('dist_id');
-            // $table->string('upa_id');
             $table->mediumText('address');
             $table->string('phone');
             $table->string('email');

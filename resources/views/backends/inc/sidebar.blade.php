@@ -170,11 +170,24 @@
                         </li>
 
                         {{-- SettingController --}}
-                        <li class="{{ Request::routeIs('settings') ? 'active' : '' }}">
-                            <a href="{{ route('settings') }}">
+                        <li>
+                            <a href="javascript:void(0);" class="has-arrow">
+                                <i class="fa fa-cog"></i> <span>Settings</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="{{ route('config.settings') }}">Config Settings</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('product.create') }}">New Product</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {{-- <li class="{{ Request::routeIs('settings') ? 'active' : '' }}">
+                            <a href="{{ route('') }}">
                                 <i class="fa fa-cog"></i><span>Settings</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </nav>
             </div>
