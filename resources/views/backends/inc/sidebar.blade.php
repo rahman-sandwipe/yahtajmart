@@ -179,15 +179,10 @@
                                     <a href="{{ route('config.settings') }}">Config Settings</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('product.create') }}">New Product</a>
+                                    <a href="{{ route('delivery.charges') }}">Delivery Charges</a>
                                 </li>
                             </ul>
                         </li>
-                        {{-- <li class="{{ Request::routeIs('settings') ? 'active' : '' }}">
-                            <a href="{{ route('') }}">
-                                <i class="fa fa-cog"></i><span>Settings</span>
-                            </a>
-                        </li> --}}
                     </ul>
                 </nav>
             </div>

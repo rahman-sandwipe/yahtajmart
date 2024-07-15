@@ -1,6 +1,8 @@
 <?php
 
 namespace Database\Factories;
+
+use App\Models\Brand;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Category;
@@ -38,6 +40,7 @@ class ProductFactory extends Factory
             'meta_tags'=>$this->faker->text,
             'meta_desc'=>$this->faker->text,
             'cat_id'=>$this->faker->randomElement(Category::pluck('id')->toArray()),
+            'brand_id'=>$this->faker->randomElement(Brand::pluck('id')->toArray()),
             'author_id'=>$this->faker->randomElement(User::pluck('id')->toArray()),
         ];
     }

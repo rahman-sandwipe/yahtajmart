@@ -20,7 +20,7 @@ class HomeController extends Controller
     public function home() : View {
         $settings       = Settings::where('id', 1)->first();
         $testimonials   = Feedback::where(['status'=>'public'])->latest()->limit(7)->get();
-        $blogs          = Blog::with('user','category')->where(['status'=>'public'])->latest()->limit(3)->get();
+        $blogs          = Blog::with('user','category')->where(['status'=>'public'])->latest()->limit(4)->get();
         $video01        = Video::with('user','category')->where(['status'=>'public'])->latest()->first();
         $video02        = Video::with('user','category')->where(['status'=>'public'])->latest()->skip(1)->first();
         $video03        = Video::with('user','category')->where(['status'=>'public'])->latest()->skip(2)->first();
