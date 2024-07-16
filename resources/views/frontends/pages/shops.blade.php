@@ -83,7 +83,7 @@
                                 <div class="product-category">
                                     <a href="{{ route('category',@$item->category->slug) }}">{{ @$item->category->name }}</a>
                                 </div>
-                                <h2><a href='shop-product-right.html'>{{ $item->title }}</a></h2>
+                                <h2><a href="{{ route('product_details',$item->slug) }}">{{ $item->title }}</a></h2>
                                 <div>
                                     <span class="font-small text-muted">Sold By <a href="#">{{ @$item->user->name }}</a></span>
                                 </div>

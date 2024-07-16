@@ -26,9 +26,24 @@ class HomeController extends Controller
         $video03        = Video::with('user','category')->where(['status'=>'public'])->latest()->skip(2)->first();
         $banners        = Banner::where(['status'=>'public'])->latest()->get();
         $categories     = Category::where(['status'=>'public'])->latest()->limit(6)->get();
-        $products       = Product::with('user','category','brand')->where(['status'=>'public'])->latest()->paginate(10);
+        
+        // Recommend
+        $recommendProd  = Product::with('user','category','brand')->where(['status'=>'public','condition'=>'Recommend'])->latest()->paginate(5);
+        
+        // New
+        $newProd        = Product::with('user','category','brand')->where(['status'=>'public','condition'=>'New'])->latest()->paginate(5);
+        
+        // Best
+        $bestProd       = Product::with('user','category','brand')->where(['status'=>'public','condition'=>'Best'])->latest()->paginate(5);
+        
+        // Sale
+        $saleProd       = Product::with('user','category','brand')->where(['status'=>'public','condition'=>'Sale'])->latest()->paginate(5);
+        
         return view('frontends.pages.home',
-        compact('settings','testimonials','blogs','video01','video02','video03','banners','categories','products'));
+        compact(
+        'settings','testimonials','blogs','video01','video02','video03','banners','categories',
+        'recommendProd','newProd','bestProd','saleProd'
+    ));
     }
     
     // CategoryController

@@ -219,7 +219,7 @@
 									<a class='active' href="{{ route('home') }}"><i class="fi-rs-home mr-5" style="font-size: 14px"></i>Home</a>
 								</li>
 								<li>
-									<a href='shop-grid-right.html'>Shop</a>
+									<a href="{{ route('shops') }}">Shop</a>
 								</li>
 								<li>
 									<a href="{{ route('blog') }}">Blog</a>

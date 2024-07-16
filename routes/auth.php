@@ -184,8 +184,13 @@ Route::group(['prefix'=>'admin','middleware'=>Admin::class],function() {
     
     // SettingsController
     Route::controller(SettingsController::class)->group(function(){
+        // Confog
         Route::get('/config-site',   'configSettings')->name('config.settings');
         Route::post('/config-site',  'configUpdate');
+        // DeliveryCharges
+        Route::get('/delivery-charges',   'deliveryCharges')->name('delivery.charges');
+        Route::post('/delivery-charges',  'deliveryChargesUpdate');
+        Route::post('/delivery-charges',  'deliveryChargesCreate')->name('delivery.charges.add');
     });
 
 

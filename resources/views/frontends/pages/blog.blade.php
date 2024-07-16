@@ -3,22 +3,6 @@
    <title>Blog & News - Multipurpose eCommerce Flatform</title>
 @endsection
 @section('front_layouts')
-<div class="page-header mt-30 mb-75">
-    <div class="container">
-        <div class="archive-header">
-            <div class="row align-items-center">
-                <div class="col-xl-12">
-                    <div class="breadcrumb">
-                        <a href="{{ route('home') }}" rel='nofollow'>
-                            <i class="fi-rs-home"></i>
-                        </a>
-                        <span></span> Blog & News
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="page-content mb-50">
     <div class="container">
         <div class="row">
@@ -27,18 +11,10 @@
                     <div class="totall-product">
                         <h2>
                             <i class="fa fa-newspaper-o mr-10"></i>
-                            <span>Recips Articles</span>
+                            <span>Articles</span>
                         </h2>
                     </div>
-                    <div class="sort-by-product-area">
-                        <div class="sort-by-cover mr-10">
-                            <div class="sort-by-product-wrap">
-                                <div class="sort-by">
-                                    <span><i class="fi-rs-apps"></i>SHOW MORE</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="loop-grid">
                     <div class="row">

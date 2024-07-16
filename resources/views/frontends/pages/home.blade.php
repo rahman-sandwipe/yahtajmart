@@ -8,6 +8,7 @@
 @endsection
 @section('front_layouts')
 <main class="main">
+    @if (count($banners)>0)
     <section class="home-slider position-relative mb-30">
         <div class="container">
             <div class="home-slide-cover mt-30">
@@ -32,9 +33,16 @@
             </div>
         </div>
     </section>
+    @else
+    <section class="home-slider position-relative mb-30">
+        <div class="container">
+            <div class="home-slide-cover mt-30">
+                <p class="text-center">Banner not pound!</p>
+            </div>
+        </div>
+    </section>
+    @endif
     <!--End hero slider-->
-
-
 
     <!-- Featured Categories -->
     <section class="popular-categories section-padding">
@@ -71,49 +79,45 @@
     </section>
     <!--End category slider-->
 
-    
-    <!--End banners-->
+    {{-- recommendProd --}}
     <section class="product-tabs section-padding position-relative">
         <div class="container">
             <div class="section-title d-flex justify-content-center">
                 <div class="title">
-                    <h3>Featured Products</h3>
+                    <h3>Recommend Products</h3>
                 </div>
             </div>
             <!--End nav-tabs-->
-            @if (count($products)>0)
+            @if (count($recommendProd)>0)
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
                     <div class="row product-grid-4">
-                        @foreach ($products as $product)
+                        @foreach ($recommendProd as $recommend)
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        <a href='shop-product-right.html'>
-                                            <img class="default-img" src="{{ asset($product->thumb) }}" alt="" />
-                                            <img class="hover-img" src="{{ asset($product->thumb) }}" alt="" />
+                                        <a href="{{ route('product_details',$recommend->slug) }}">
+                                            <img class="default-img" src="{{ asset($recommend->thumb) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset($recommend->thumb) }}" alt="" />
                                         </a>
-                                    </div>
-                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot">{{ @$product->category->name }}</span>
                                     </div>
                                 </div>
                                 <div class="product-content-wrap">
-                                    {{-- <div class="product-category">
-                                        <a href='shop-grid-right.html'>Snack</a>
-                                    </div> --}}
-                                    <h2><a href="{{ route('product_details', $product->slug) }}">{{ $product->title }}</a></h2>
+                                    <div class="product-category">
+                                        <a href="{{ route('category',$recommend->slug) }}">{{ $recommend->category->name }}</a>
+                                    </div>
+                                    <h2><a href="{{ route('product_details', $recommend->slug) }}">{{ $recommend->title }}</a></h2>
                                     <div>
-                                        <span class="font-small text-muted">Solded By <a href='vendor-details-1.html'>{{ @$product->user->name }}</a></span>
+                                        <span class="font-small text-muted">Solded By <a href='vendor-details-1.html'>{{ @$recommend->user->name }}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
-                                            <span>BDT {{ $product->offer_price }}</span>
-                                            <span class="old-price">BDT {{ $product->regular_price }}</span>
+                                            <span>BDT {{ $recommend->offer_price }}</span>
+                                            <span class="old-price">BDT {{ $recommend->regular_price }}</span>
                                         </div>
                                     </div>
-                                    <a class="btn w-100 hover-up" href="{{ route('addToCart',$product->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                    <a class="btn w-100 hover-up" href="{{ route('addToCart',$recommend->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
                                 </div>
                             </div>
                         </div>
@@ -134,6 +138,196 @@
             <!--End tab-content-->
         </div>
     </section>
+
+    {{-- newProd --}}
+    <section class="product-tabs section-padding position-relative">
+        <div class="container">
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3>New Products</h3>
+                </div>
+            </div>
+            <!--End nav-tabs-->
+            @if (count($newProd)>0)
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                    <div class="row product-grid-4">
+                        @foreach ($newProd as $new)
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href={{ route('product_details',$new->slug) }}>
+                                            <img class="default-img" src="{{ asset($new->thumb) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset($new->thumb) }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">{{ @$new->category->name }}</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    {{-- <div class="product-category">
+                                        <a href='shop-grid-right.html'>Snack</a>
+                                    </div> --}}
+                                    <h2><a href="{{ route('product_details', $new->slug) }}">{{ $new->title }}</a></h2>
+                                    <div>
+                                        <span class="font-small text-muted">Solded By <a href='vendor-details-1.html'>{{ @$new->user->name }}</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>BDT {{ $new->offer_price }}</span>
+                                            <span class="old-price">BDT {{ $new->regular_price }}</span>
+                                        </div>
+                                    </div>
+                                    <a class="btn w-100 hover-up" href="{{ route('addToCart',$new->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <!--end product card-->
+                    </div>
+                    <!--End product-grid-4-->
+                </div>
+                <!--En tab one-->
+            </div>
+            @else
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3 class="text-danger">Product not found</h3>
+                </div>
+            </div>
+            @endif
+            <!--End tab-content-->
+        </div>
+    </section>
+
+    {{-- bestProd --}}
+    <section class="product-tabs section-padding position-relative">
+        <div class="container">
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3>Best Products</h3>
+                </div>
+            </div>
+            <!--End nav-tabs-->
+            @if (count($bestProd)>0)
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                    <div class="row product-grid-4">
+                        @foreach ($bestProd as $best)
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href='shop-product-right.html'>
+                                            <img class="default-img" src="{{ asset($best->thumb) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset($best->thumb) }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">{{ @$best->category->name }}</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    {{-- <div class="product-category">
+                                        <a href='shop-grid-right.html'>Snack</a>
+                                    </div> --}}
+                                    <h2><a href="{{ route('product_details', $best->slug) }}">{{ $best->title }}</a></h2>
+                                    <div>
+                                        <span class="font-small text-muted">Solded By <a href='vendor-details-1.html'>{{ @$best->user->name }}</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>BDT {{ $best->offer_price }}</span>
+                                            <span class="old-price">BDT {{ $best->regular_price }}</span>
+                                        </div>
+                                    </div>
+                                    <a class="btn w-100 hover-up" href="{{ route('addToCart',$best->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <!--end product card-->
+                    </div>
+                    <!--End product-grid-4-->
+                </div>
+                <!--En tab one-->
+            </div>
+            @else
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3 class="text-danger">Product not found</h3>
+                </div>
+            </div>
+            @endif
+            <!--End tab-content-->
+        </div>
+    </section>
+
+    {{-- saleProd --}}
+    <section class="product-tabs section-padding position-relative">
+        <div class="container">
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3>Sale Products</h3>
+                </div>
+            </div>
+            <!--End nav-tabs-->
+            @if (count($saleProd)>0)
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
+                    <div class="row product-grid-4">
+                        @foreach ($saleProd as $sale)
+                        <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
+                            <div class="product-cart-wrap mb-30 wow animate__animated animate__fadeIn" data-wow-delay=".1s">
+                                <div class="product-img-action-wrap">
+                                    <div class="product-img product-img-zoom">
+                                        <a href='shop-product-right.html'>
+                                            <img class="default-img" src="{{ asset($sale->thumb) }}" alt="" />
+                                            <img class="hover-img" src="{{ asset($sale->thumb) }}" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="product-badges product-badges-position product-badges-mrg">
+                                        <span class="hot">{{ @$sale->category->name }}</span>
+                                    </div>
+                                </div>
+                                <div class="product-content-wrap">
+                                    {{-- <div class="product-category">
+                                        <a href='shop-grid-right.html'>Snack</a>
+                                    </div> --}}
+                                    <h2><a href="{{ route('product_details', $sale->slug) }}">{{ $sale->title }}</a></h2>
+                                    <div>
+                                        <span class="font-small text-muted">Solded By <a href='vendor-details-1.html'>{{ @$sale->user->name }}</a></span>
+                                    </div>
+                                    <div class="product-card-bottom">
+                                        <div class="product-price">
+                                            <span>BDT {{ $sale->offer_price }}</span>
+                                            <span class="old-price">BDT {{ $sale->regular_price }}</span>
+                                        </div>
+                                    </div>
+                                    <a class="btn w-100 hover-up" href="{{ route('addToCart',$sale->id) }}"><i class="fi-rs-shopping-cart mr-5"></i>Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        <!--end product card-->
+                    </div>
+                    <!--End product-grid-4-->
+                </div>
+                <!--En tab one-->
+            </div>
+            @else
+            <div class="section-title d-flex justify-content-center">
+                <div class="title">
+                    <h3 class="text-danger">Product not found</h3>
+                </div>
+            </div>
+            @endif
+            <!--End tab-content-->
+        </div>
+    </section>
+    <!--End banners-->
     <!--Products Tabs-->
 
 
@@ -159,24 +353,13 @@
                             @foreach ($blogs as $article)
                             <article class="col-xl-3 col-lg-4 col-md-6 text-center hover-up mb-30 animated">
                                 <div class="post-thumb">
-                                    <a href='blog-post-right.html'>
+                                    <a href="{{ route('blog_details',$article->slug) }}">
                                         <img class="border-radius-15" src="{{ asset($article->thumb) }}" alt="" />
                                     </a>
-                                    <div class="entry-meta">
-                                        <a class='entry-meta meta-2' href='blog-category-grid.html'>
-                                            <i class="fi-rs-heart"></i>
-                                        </a>
-                                    </div>
                                 </div>
                                 <div class="entry-content-2">
-                                    {{-- <div class="entry-meta meta-1 font-xs mt-15 mb-15">
-                                        <a class="author-avatar" href="#">
-                                            <img class="img-circle" src="{{ asset('frontends/imgs/blog/author-1.png') }}" alt="" />
-                                        </a>
-                                        <span class="post-by">Writer By <a href="#">{{ @$article->user->name }}</a></span>
-                                    </div> --}}
                                     <h4 class="post-title mb-15">
-                                        <a href='blog-post-right.html'>{{ $article->headline }}</a>
+                                        <a href="{{ route('blog_details',$article->slug) }}">{{ $article->headline }}</a>
                                     </h4>
                                     <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                         <div>
