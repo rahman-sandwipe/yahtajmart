@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use App\Models\Blog;
+use App\Models\Brand;
 use App\Models\Video;
 use App\Models\Category;
 use App\Models\Contact;
@@ -19,13 +20,10 @@ class HomeController extends Controller
 {
     public function home() : View {
         $settings       = Settings::where('id', 1)->first();
-        $testimonials   = Feedback::where(['status'=>'public'])->latest()->limit(7)->get();
         $blogs          = Blog::with('user','category')->where(['status'=>'public'])->latest()->limit(4)->get();
-        $video01        = Video::with('user','category')->where(['status'=>'public'])->latest()->first();
-        $video02        = Video::with('user','category')->where(['status'=>'public'])->latest()->skip(1)->first();
-        $video03        = Video::with('user','category')->where(['status'=>'public'])->latest()->skip(2)->first();
         $banners        = Banner::where(['status'=>'public'])->latest()->get();
-        $categories     = Category::where(['status'=>'public'])->latest()->limit(6)->get();
+        $categories     = Category::where(['status'=>'public'])->latest()->take(8)->get();
+        $brands         = Brand::where(['status'=>'public'])->latest()->take(8)->get();
         
         // Recommend
         $recommendProd  = Product::with('user','category','brand')->where(['status'=>'public','condition'=>'Recommend'])->latest()->paginate(5);
@@ -41,7 +39,11 @@ class HomeController extends Controller
         
         return view('frontends.pages.home',
         compact(
-        'settings','testimonials','blogs','video01','video02','video03','banners','categories',
+        'settings',
+        'blogs',
+        'banners',
+        'categories',
+        'brands',
         'recommendProd','newProd','bestProd','saleProd'
     ));
     }

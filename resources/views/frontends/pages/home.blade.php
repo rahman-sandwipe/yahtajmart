@@ -8,8 +8,9 @@
 @endsection
 @section('front_layouts')
 <main class="main">
-    @if (count($banners)>0)
+
     <section class="home-slider position-relative mb-30">
+        @if (count($banners)>0)
         <div class="container">
             <div class="home-slide-cover mt-30">
                 <div class="hero-slider-1 style-4 dot-style-1 dot-style-1-position-1">
@@ -32,19 +33,16 @@
                 <div class="slider-arrow hero-slider-1-arrow"></div>
             </div>
         </div>
-    </section>
-    @else
-    <section class="home-slider position-relative mb-30">
+        @else
         <div class="container">
             <div class="home-slide-cover mt-30">
                 <p class="text-center">Banner not pound!</p>
             </div>
         </div>
+        @endif
     </section>
-    @endif
-    <!--End hero slider-->
+    <!-- Banner Slider -->
 
-    <!-- Featured Categories -->
     <section class="popular-categories section-padding">
         <div class="container">
             @if (count($categories)>0)
@@ -77,7 +75,7 @@
             @endif             
        </div>
     </section>
-    <!--End category slider-->
+    <!--category slider-->
 
     {{-- recommendProd --}}
     <section class="product-tabs section-padding position-relative">
@@ -329,7 +327,6 @@
     </section>
     <!--End banners-->
     <!--Products Tabs-->
-
 
     <section class="product-tabs section-padding position-relative">
         <div class="container">
